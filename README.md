@@ -1,4 +1,4 @@
-# mg-techniques · MG 排版技法族
+# gtrk-mg-techniques · MG 排版技法族
 
 > 「整体排版 motion」这一族视觉传达技法的家——每个 skill 是**一种技法**（一种把东西摆上画面、动起来、把注意力引到某处的方式），
 > 不绑定任何栏目、不带任何栏目审美。产物是 gsap-emit v1 合规的 html-particle 颗粒，
@@ -22,13 +22,13 @@
 任一 Agent（Claude Code / Codex / Cursor …）：
 
 ```bash
-npx skills add Gitruck/mg-techniques --skill doc-reveal
+npx skills add Gitruck/gtrk-mg-techniques --skill doc-reveal
 ```
 
 用 gtrk 的宿主（同一条路，顺带登记进栏目配置 `style.skills`，缺省 `routing:none`——技法不是车道生产者，由 agent 按槽位取用）：
 
 ```bash
-gtrk skills add Gitruck/mg-techniques --skill doc-reveal
+gtrk skills add Gitruck/gtrk-mg-techniques --skill doc-reveal
 ```
 
 脚本依赖：Python 3.10+、Pillow；按需 pymupdf（PDF 取页）、playwright（本地 seek 预检）。
