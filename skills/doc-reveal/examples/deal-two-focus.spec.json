@@ -1,0 +1,20 @@
+{
+  "id": "example-deal-two-focus",
+  "width": 1920,
+  "height": 1080,
+  "duration": 11.7,
+  "bg": "paper",
+  "palette": { "accent": "#BD2B35", "ink": "#121212", "ink_sub": "#4A4E57" },
+  "pages": ["pages/p1.png", "pages/p2.png", "pages/p3.png"],
+  "page_width": 640,
+  "stack": { "x": 1230, "y": 530, "fan": [-2, 5, -8], "offset": [18, 12] },
+  "entrance": { "mode": "deal", "start": 0.15, "gap": 0.3, "dur": 0.7, "from": "bottom-right" },
+  "focus": [
+    { "t": 3.6, "rect": [0.119, 0.2935, 0.274, 0.3093], "zoom": 2.3, "anchor": [0.52, 0.44], "mark": "marker", "mark_at": 4.3, "dur": 1.1 },
+    { "t": 6.3, "rect": [0.2216, 0.1417, 0.7778, 0.1601], "zoom": 2.2, "anchor": [0.73, 0.36], "mark": "marker", "mark_at": 7.1, "dur": 1.1 }
+  ],
+  "captions": [
+    { "t": 1.7, "variant": "chip", "pos": "left", "y": 280, "w": 600, "title": "<机构> · <年份>", "meta": "<作者 · 作者 · 作者>" },
+    { "t": 9.2, "variant": "card", "pos": "left", "y": 392, "w": 600, "kicker": "标题译作", "title": "<中文译名>", "en": "<Original Title>", "meta": "<期刊> · <年份>" }
+  ]
+}

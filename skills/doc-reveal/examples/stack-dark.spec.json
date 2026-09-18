@@ -1,0 +1,15 @@
+{
+  "id": "example-stack-dark",
+  "duration": 10,
+  "bg": "dark",
+  "pages": ["pages/p1.png", "pages/p2.png", "pages/p3.png"],
+  "page_width": 640,
+  "stack": { "x": 1230, "y": 530 },
+  "entrance": { "mode": "stack", "start": 0.2, "gap": 0.4, "dur": 0.6 },
+  "focus": [
+    { "t": 3.0, "rect": [0.2216, 0.1417, 0.7778, 0.1601], "zoom": 2.2, "anchor": [0.66, 0.36], "mark": "underline", "mark_at": 3.8 }
+  ],
+  "captions": [
+    { "t": 1.9, "variant": "card", "pos": "left", "y": 380, "w": 600, "kicker": "<眉题>", "title": "<中文标题>", "en": "<Original Title>", "meta": "<出处>" }
+  ]
+}
