@@ -1,0 +1,24 @@
+{
+  "_": "等间隔快闪（默认档）。OP 片头最常用：全程 6 帧一张，三条带相位 0/2/4 错开。clips 换成你自己的片段路径。",
+  "id": "example-op-uniform",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 3.64,
+  "bands": 3,
+  "rhythm": { "mode": "uniform", "seg": 6, "phase": [0, 2, 4] },
+  "source": { "lead": 0.5, "stride": 1.7 },
+  "grade": { "preset": "warm-cyan", "rgb_shift": 9, "smear": 2 },
+  "seed": 20260921,
+  "clips": [
+    "clips/01.mp4",
+    "clips/02.mp4",
+    "clips/03.mp4",
+    "clips/04.mp4",
+    "clips/05.mp4",
+    "clips/06.mp4",
+    "clips/07.mp4",
+    "clips/08.mp4",
+    "clips/09.mp4"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "_": "顿挫档：慢一段（中位 27 帧）→ 急闪一串（中位 5 帧，连 2–3 张）交替。参考片的原节奏，适合片中闪回而不是 OP——它比等间隔更'喘气'，也更容易被读成「切换时停了一下」。带高不等分，中间那条更宽。",
+  "id": "example-flashback-rhythm",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 2.72,
+  "bands": [300, 480, 300],
+  "rhythm": {
+    "mode": "rhythm",
+    "hold_pool": [16, 17, 22, 26, 26, 27, 27, 28, 39, 39, 39, 43, 43],
+    "burst_pool": [3, 4, 5, 5, 5, 5, 5, 6, 7, 7],
+    "burst_run": [2, 3]
+  },
+  "source": { "lead": 0.5, "stride": 1.7 },
+  "grade": { "preset": "wash", "rgb_shift": 6, "smear": 3 },
+  "seed": 7,
+  "clips": [
+    "clips/01.mp4",
+    "clips/02.mp4",
+    "clips/03.mp4",
+    "clips/04.mp4",
+    "clips/05.mp4",
+    "clips/06.mp4"
+  ]
+}
