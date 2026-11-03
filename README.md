@@ -31,6 +31,7 @@
 | [`globe-arcs`](skills/globe-arcs/SKILL.md) | 颗粒 | 点阵地球飞线：陆地点阵地球自转，按口播把城市转到正面 / 推近，城市间飞出大圆弧（常亮线或彗尾），落地泛起透视光圈 | 「地球飞线」「全球航线示意」「从 A 飞到 B」「业务覆盖全球」 |
 | [`beat-pulse`](skills/beat-pulse/SKILL.md) | 视频 | 卡点冲击链：拍点上震屏、推一下 / 呼吸胀缩、闪白、RGB 色散、负片闪、放射模糊、条带错位按配方叠加衰减，可每拍或重拍切片段 | 「做卡点」「踩点视频」「卡点震屏闪白」「MAD 冲击感」 |
 | [`cam-whip`](skills/cam-whip/SKILL.md) | 视频 | 拉镜 / 甩镜卡点：切点两侧做甩镜、急推急拉（可偏锚点）、平铺推拉，镜像补边、真运动模糊，段内可加缓推与手持微震 | 「甩镜转场」「拉镜卡点」「锚点拉镜连招」「whip pan」 |
+| [`lyric-pv`](skills/lyric-pv/SKILL.md) | 颗粒 | 文字 PV（歌词排版）：一句一个镜头，布局 × 登场 × 停留 × 退场 × 装饰 × 转场按 seed 确定性组合，副歌回到原样、强调词放大、一拍二作画节奏 | 「做歌词 MV」「文字 PV」「歌词动画」「竖排歌词」 |
 
 ## 安装
 
@@ -44,6 +45,7 @@ npx skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 npx skills add Gitruck/gtrk-mg-techniques --skill globe-arcs
 npx skills add Gitruck/gtrk-mg-techniques --skill beat-pulse
 npx skills add Gitruck/gtrk-mg-techniques --skill cam-whip
+npx skills add Gitruck/gtrk-mg-techniques --skill lyric-pv
 ```
 
 用 gtrk 的宿主（同一条路，顺带登记进栏目配置 `style.skills`，缺省 `routing:none`——技法不是车道生产者，由 agent 按槽位取用）：
@@ -56,6 +58,7 @@ gtrk skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 gtrk skills add Gitruck/gtrk-mg-techniques --skill globe-arcs
 gtrk skills add Gitruck/gtrk-mg-techniques --skill beat-pulse
 gtrk skills add Gitruck/gtrk-mg-techniques --skill cam-whip
+gtrk skills add Gitruck/gtrk-mg-techniques --skill lyric-pv
 ```
 
 脚本依赖：Python 3.10+、Pillow；按需 pymupdf（PDF 取页）、playwright（本地 seek 预检与验收读数）、
@@ -109,4 +112,7 @@ MIT。技法只展示你有权展示的内容：论文首页作引用、新闻�
 | `globe-arcs/assets/land-mask.json` | 陆地点阵位图（1.2° 网格，5 KB） | 由 Natural Earth 1:110m Land（`ne_110m_land`）栅格化，[naturalearthdata.com](https://www.naturalearthdata.com/)，**公有领域** |
 | `chat-replay`、`candle-chart`、`globe-arcs` 脚本里的 `ASCII_EM` 表 | 95 个 ASCII 字符的步进宽度（em），用来估字宽 | 量自思源黑体 CN Medium 的字形度量；思源黑体以 SIL Open Font License 1.1 发布（字体本身不随仓分发） |
 
-`candle-chart/examples/synthetic-daily.csv` 是固定种子合成的行情，不对应任何真实标的。
+`candle-chart/examples/synthetic-daily.csv` 是固定种子合成的行情，不对应任何真实标的；`lyric-pv` 的示例歌词是原创示意文字；
+`beat-pulse` / `cam-whip` 的示例素材由 `make_clips.py` 用 ffmpeg 程序化信号源现场合成，不随仓分发。
+
+思路借鉴（只借分类与构成规则，未复制代码与素材）：`lyric-pv` 的部件分类借鉴 JIZURA（文字 PV 自动构成，MIT）。

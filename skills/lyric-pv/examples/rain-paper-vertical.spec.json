@@ -1,0 +1,40 @@
+{
+  "_": "六句原创示例歌词（仅作演示，LRC 输入），纸色衬线、竖屏、逐帧动作（koma 1）；只用竖排 / 居中 / 叠排 / 框四种布局，换句用色块擦过，不要装饰数字。",
+  "id": "example-lyric-pv-rain",
+  "width": 1080,
+  "height": 1920,
+  "duration": 12,
+  "style": "paper",
+  "koma": 1,
+  "seed": 11,
+  "lrc": "rain-paper.lrc",
+  "layouts": [
+    "vertical",
+    "center",
+    "stack",
+    "frame"
+  ],
+  "enters": [
+    "rise",
+    "wipe",
+    "type",
+    "part"
+  ],
+  "exits": [
+    "fade",
+    "wipe",
+    "sink"
+  ],
+  "transition": "wipe",
+  "decor_numbers": false,
+  "font_size": 104,
+  "line_overrides": {
+    "0": {
+      "layout": "vertical"
+    },
+    "4": {
+      "layout": "center",
+      "emph": "雨停了"
+    }
+  }
+}
