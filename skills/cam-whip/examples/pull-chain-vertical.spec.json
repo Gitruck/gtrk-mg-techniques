@@ -1,0 +1,17 @@
+{
+  "_": "竖屏 9:16、30fps；不切镜头（cut: none），同一个素材上每拍一次拉镜：急推到 Z 倍再急拉回，锚点左上 / 右下交替、转角左右交替——「锚点拉镜连招」。素材先跑 make_clips.py 生成。",
+  "id": "example-cam-whip-pull-chain",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 4,
+  "clips": ["clips/c01.mp4"],
+  "cut": "none",
+  "bpm": { "bpm": 100, "offset": 0.6, "every": 1 },
+  "moves": [
+    { "type": "pull", "anchor": [0.35, 0.4], "zoom": 1.8, "rot": 12 },
+    { "type": "pull", "anchor": [0.65, 0.62], "zoom": 2.3, "rot": 16 }
+  ],
+  "handheld": { "amp": 3, "rot": 0.15 },
+  "seed": 7
+}

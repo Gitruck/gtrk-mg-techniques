@@ -1,0 +1,14 @@
+{
+  "_": "120 BPM、每拍一个镜头动作、轮流用甩镜（左 / 右 / 上）、拉镜、平铺推拉；段内轻微缓推 + 手持微震。素材先跑 make_clips.py 生成（程序化合成画面）。",
+  "id": "example-cam-whip-combo",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 4.5,
+  "clips": ["clips/c01.mp4", "clips/c02.mp4", "clips/c03.mp4", "clips/c04.mp4", "clips/c05.mp4", "clips/c06.mp4"],
+  "bpm": { "bpm": 120, "offset": 0.5, "every": 1 },
+  "moves": ["whip-left", "pull", "whip-right", "tile", "whip-up", "pull"],
+  "drift": { "amp": 0.03 },
+  "handheld": { "amp": 4, "rot": 0.2, "freq": 0.6 },
+  "seed": 20261103
+}
