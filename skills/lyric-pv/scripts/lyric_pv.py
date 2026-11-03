@@ -215,6 +215,8 @@ def build(spec, spec_dir, max_chars):
             src = seen[key]
             for k in ("layout", "enter", "exit", "hold", "decor", "camera_seed"):
                 ln.setdefault(k, src[k])
+            if src.get("emph") and not ln.get("emph"):
+                ln["emph"] = src["emph"]  # 副歌回到第一次的样子，强调词也一样
             ln["repeat_of"] = src["i"]
         else:
             for k, pool in (("layout", LAYOUTS), ("enter", ENTERS), ("exit", EXITS), ("hold", HOLDS)):

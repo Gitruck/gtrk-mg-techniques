@@ -64,6 +64,8 @@ python scripts/lyric_check.py <工程>/mg/<composition_id>.html --out <系统tem
 - stdout 摘要逐句报出抽到的布局、登场、停留、退场、装饰、转场、字号、是不是副歌复现——**拿它对着接触表改 spec**。
 - 产物 1–2 万字符（纯文字）。lint 的 `x-soft-alpha` 是信息项。
 - **预检不是验收**：真验收 = 真渲染引擎抽帧（`gtrk mg render` / `gtrk render`）。
+  2026-11-03 已按云端装配方式在 HyperFrames 引擎（本机 0.7.57 + 线上同版 Chrome 152）上渲过示例：8 个时刻与本地预检的平均像素差 2.7–3.0 / 255；
+  唯一偏大的一帧（9.8）是跑马灯——引擎按 30fps 取第 87 帧（2.900 s），预检 seek 在 2.910 s，字正在横移。
 
 ### 5. 交回铺轨
 
