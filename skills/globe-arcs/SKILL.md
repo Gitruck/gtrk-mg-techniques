@@ -57,8 +57,13 @@ python scripts/globe_check.py <工程>/mg/<composition_id>.html --out <系统tem
 ```
 
 - 产物约 1.5 万字符（陆地点阵位图 5 KB）。stdout 摘要报出每条飞线起落时两端的 z（越接近 1 越正对镜头）与每个地点终态的 z。
-- **首次上线 MUST 先真渲一颗**（`gtrk mg render <html> --duration <s>`）抽帧确认：本技法靠时间线 `onUpdate` 回调整帧重画 canvas。
-  gsap-emit「回调与 seek 语义」规定定帧时回调可达是引擎侧义务，但本仓此前的颗粒都不依赖回调，这一条还没在真引擎上实测过。
+- **回调驱动已在真渲染引擎上验过**（2026-11-03）：云端 `html_animate_render` 的引擎是 HyperFrames（线上 0.7.100，钉 Chrome 152.0.7928.2），
+  逐帧定位用 `totalTime(t, suppressEvents=false)`，会触发时间线 `onUpdate`。本机用 HyperFrames 0.7.57 + 同版 Chrome 152、
+  按云端同样的装配方式与旗标（`--fps 30 --quality high --no-browser-gpu`）渲了示例：9 个时刻与本地预检的平均像素差 3.3–3.6 / 255，
+  帧帧不同；引擎检测到 canvas 后自动关掉静态帧去重（`static-frame dedup: disabled (canvas/webgl)`），不会把回调画面误判成静帧。
+  引擎版本与线上差几个小版本——换了引擎版本，或第一次在线上大批量用之前，仍建议 `gtrk mg render` 真渲一颗抽帧。
+- **渲染成本**：软件光栅化下，几千个圆点（`arc`）曾是最贵的一步——引擎实测 3 秒片段 68 s；陆地点改画等面积小方块、
+  辉光与海洋只在半径变化时重画后降到约 28 s（去掉整个陆地层也是 27 s，陆地已几乎不花时间）。长片段仍比纯文字颗粒贵，按需控制时长。
 
 ### 5. 交回铺轨
 
@@ -68,7 +73,8 @@ python scripts/globe_check.py <工程>/mg/<composition_id>.html --out <系统tem
 
 - 点阵地球只需要「哪里是陆地」一份位图，就能在任意角度、任意缩放下重画——没有贴图、没有 WebGL、没有外部依赖，5 KB 进颗粒。
 - 每帧整帧重画（不累加、不追加）：seek 到哪一帧画哪一帧，满足 gsap-emit「幂等回调」。
-- 三层 canvas：背层（大气辉光、海洋、经纬网）、陆地层（只有点阵）、特效层（飞线、光圈、标签）。分层是为了让验收工具能单独读陆地层的像素。
+- 四层 canvas：底层（大气辉光、海洋圆盘，只随半径重画）、经纬网层、陆地层（只有点阵）、特效层（飞线、光圈、标签）。
+  分层一是省渲染（大面积渐变不必每帧重画），二是让验收工具能单独读陆地层的像素。
 - 零卷积：辉光、海洋高光、飞线亮头都是径向渐变，没有 `filter` / `shadowBlur`。
 
 ## 陆地数据的来历
@@ -118,4 +124,4 @@ python scripts/globe_check.py <工程>/mg/<composition_id>.html --out <系统tem
 2. 零卷积：没有 `filter` / `shadowBlur` / `feGaussianBlur`。
 3. 字体名命中渲染服务端字体表；缺省思源栈已命中（标签用 canvas `fillText`，同一字体栈）。
 4. 画幅 = 目标工程画幅；竖屏工程另写一份 spec（`globe.x / y / radius` 按新画幅给）。
-5. 首次上线先真渲一颗抽帧（见上「验收」）；线路是示意时写明「示意」。
+5. 换引擎版本或线上大批量使用前，真渲一颗抽帧（见上「验收」）；线路是示意时写明「示意」。

@@ -18,8 +18,8 @@
 
 任一不过退出码 1。
 
-⚠️ 本地预检，不替代真渲染引擎抽帧。本技法靠时间线 onUpdate 回调整帧重画 canvas——gsap-emit「回调与 seek 语义」
-规定定帧时回调可达是引擎侧义务，但首次上线 MUST 先用 `gtrk mg render` 真渲一颗抽帧确认。
+⚠️ 本地预检，不替代真渲染引擎抽帧。本技法靠时间线 onUpdate 回调整帧重画 canvas；回调可达已在 HyperFrames 引擎上实测通过
+（见 SKILL.md「生成 → lint → 验收」），换引擎版本或线上大批量使用前仍建议 `gtrk mg render` 真渲一颗。
 依赖：playwright、Pillow；--video 另需 ffmpeg。
 """
 import argparse

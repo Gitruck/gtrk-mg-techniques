@@ -9,7 +9,7 @@ spec 字段见 ../references/spec.md。脚本只做机械活：读陆地点阵�
 旋转补间、算飞线大圆弧的高度、在生成期按同一套投影复算每个关键时刻（落点在不在正面、标签有没有出画 / 互叠），
 再发射时间线。去哪、从哪飞到哪、什么时候飞、标签写什么由调用方决定。
 
-画面：三层 canvas——背层（大气辉光、海洋圆盘、经纬网）、陆地层（点阵）、特效层（飞线、落点光圈、地点标签）。
+画面：四层 canvas——底层（大气辉光、海洋圆盘，只随半径重画）、经纬网层、陆地层（点阵）、特效层（飞线、落点光圈、地点标签）。
 时间线只补间一个状态对象（中心经纬度、缩放、自转、每条飞线的进度、每个光圈的相位、每个地点的不透明度），
 时间线 onUpdate 按状态整帧重画——seek 到哪一帧就画哪一帧，不累加、不追加（gsap-emit「幂等回调」）。
 
@@ -352,8 +352,9 @@ def build(spec, spec_dir, max_chars):
     if P["canvas"]:
         out.append('<div class="bgfill" style="position:absolute;inset:0;background:%s;"></div>' % P["canvas"])
     out.append("<style>%s</style>" % "".join(css))
-    out.append('<canvas class="gb" width="%d" height="%d"></canvas><canvas class="gl" width="%d" height="%d"></canvas><canvas class="gf" width="%d" height="%d"></canvas>'
-               % (W, H, W, H, W, H))
+    out.append('<canvas class="ga" width="%d" height="%d"></canvas><canvas class="gb" width="%d" height="%d"></canvas>'
+               '<canvas class="gl" width="%d" height="%d"></canvas><canvas class="gf" width="%d" height="%d"></canvas>'
+               % (W, H, W, H, W, H, W, H))
     out.append(title_html)
     out.append('<script src="%s"></script>' % GSAP_CDN)
     out.append("<script>(function(){\n%s\n})();</script>" % "\n".join(js))
@@ -379,8 +380,9 @@ def build(spec, spec_dir, max_chars):
 
 # 颗粒里的绘制代码。draw() 只读状态 S / AU / RP / PA，整帧重画——seek 到哪画到哪。
 GLOBE_JS = r"""
-var gb=q('.gb'), glc=q('.gl'), gf=q('.gf');
-var cb=gb.getContext('2d'), cl=glc.getContext('2d'), cf=gf.getContext('2d');
+var ga=q('.ga'), gb=q('.gb'), glc=q('.gl'), gf=q('.gf');
+var ca=ga.getContext('2d'), cb=gb.getContext('2d'), cl=glc.getContext('2d'), cf=gf.getContext('2d');
+var lastR=-1;
 var D2R=Math.PI/180;
 // 陆地点阵：按 build_land_mask.py 的布局规则还原单位向量
 var LX=[],LY=[],LZ=[];
@@ -413,12 +415,18 @@ function P3(v,o){var x=v[1]*o.cl-v[0]*o.sl, c=v[0]*o.cl+v[1]*o.sl; return [x, o.
 function hidden(p){return p[2]<0 && (p[0]*p[0]+p[1]*p[1])<1;}
 function draw(){
   var o=rot(), Rz=o.R, dbg={S:{lon:S.lon+S.spin,lat:S.lat,zoom:S.zoom},R:Rz,cx:GX,cy:GY,marks:[],heads:[],labels:[]};
-  // 背层：大气辉光 + 海洋圆盘 + 经纬网
+  // 底层：大气辉光 + 海洋圆盘。只随半径变——半径没变就不重画（软件光栅化下大面积径向渐变很贵）；
+  // 缓存键是状态本身（Rz），seek 到哪一帧都画出同一张，仍是幂等的
+  if(Math.abs(Rz-lastR)>1e-6){
+    ca.clearRect(0,0,W,H);
+    var g=ca.createRadialGradient(GX,GY,Rz*0.98,GX,GY,Rz*1.2); g.addColorStop(0,C.atmosphere); g.addColorStop(1,'rgba(0,0,0,0)');
+    ca.fillStyle=g; ca.beginPath(); ca.arc(GX,GY,Rz*1.2,0,Math.PI*2); ca.fill();
+    var g2=ca.createRadialGradient(GX-Rz*0.35,GY-Rz*0.4,Rz*0.05,GX,GY,Rz); g2.addColorStop(0,C.ocean_hi); g2.addColorStop(1,C.ocean);
+    ca.fillStyle=g2; ca.beginPath(); ca.arc(GX,GY,Rz,0,Math.PI*2); ca.fill();
+    lastR=Rz;
+  }
+  // 经纬网（随旋转变，每帧画）
   cb.clearRect(0,0,W,H);
-  var g=cb.createRadialGradient(GX,GY,Rz*0.98,GX,GY,Rz*1.2); g.addColorStop(0,C.atmosphere); g.addColorStop(1,'rgba(0,0,0,0)');
-  cb.fillStyle=g; cb.beginPath(); cb.arc(GX,GY,Rz*1.2,0,Math.PI*2); cb.fill();
-  var g2=cb.createRadialGradient(GX-Rz*0.35,GY-Rz*0.4,Rz*0.05,GX,GY,Rz); g2.addColorStop(0,C.ocean_hi); g2.addColorStop(1,C.ocean);
-  cb.fillStyle=g2; cb.beginPath(); cb.arc(GX,GY,Rz,0,Math.PI*2); cb.fill();
   if(GRAT){
     cb.strokeStyle=C.graticule; cb.lineWidth=1; cb.beginPath();
     for(var lo=-180;lo<180;lo+=30){var up=false;for(var la=-90;la<=90;la+=3){var p=P3(V(la,lo),o);if(p[2]>0){var X=GX+Rz*p[0],Y=GY-Rz*p[1];if(up)cb.lineTo(X,Y);else cb.moveTo(X,Y);up=true;}else up=false;}}
@@ -434,10 +442,12 @@ function draw(){
     var y=o.cb*LZ[i]-o.sb*c;
     bins[Math.min(4,Math.floor(z*5))].push(GX+Rz*x, GY-Rz*y);
   }
-  var dr=DOT*Math.sqrt(S.zoom);
+  // 点画成等面积的小方块而不是圆：几千个 arc 在软件光栅化下是整颗颗粒最贵的一步（引擎实测 3 秒片段 68s → 28s），
+  // 半径 1–2px 的圆与方块肉眼分不出
+  var hs=DOT*Math.sqrt(S.zoom)*0.886;
   for(var b=0;b<5;b++){
     cl.globalAlpha=0.28+0.72*(b+0.5)/5; cl.beginPath(); var arr=bins[b];
-    for(var m=0;m<arr.length;m+=2){cl.moveTo(arr[m]+dr,arr[m+1]); cl.arc(arr[m],arr[m+1],dr,0,Math.PI*2);}
+    for(var m=0;m<arr.length;m+=2){cl.rect(arr[m]-hs,arr[m+1]-hs,2*hs,2*hs);}
     cl.fill();
   }
   cl.globalAlpha=1;
