@@ -27,6 +27,7 @@
 | [`doc-reveal`](skills/doc-reveal/SKILL.md) | 颗粒 | 文献 / 文档页「叠放 · 发牌 · 局部强调」：多页纸落成一叠，镜头推近某一行，荧光笔划过，旁边落文案卡 | 「引用这篇论文」「新闻截图叠放展示」「把这段文字圈出来放大」 |
 | [`band-strobe`](skills/band-strobe/SKILL.md) | 视频 | 横带频闪蒙太奇：画幅横切成几条带，每条带各自快切不同画面、切点相位错开，叠 RGB 错位与洗白调色 | 「做个片头 / OP」「开场频闪」「闪回蒙太奇」「glitch 快切」 |
 | [`chat-replay`](skills/chat-replay/SKILL.md) | 颗粒 | 聊天记录回放：对话气泡逐条弹出，对方「正在输入」、我方在输入框里逐字打出，排满上推，说到哪句就描边 + 荧光笔（可推近） | 「把这段聊天记录做成动画」「群聊对话逐条弹出」「情景还原一段对话」 |
+| [`candle-chart`](skills/candle-chart/SKILL.md) | 颗粒 | K 线图动画：蜡烛逐根从开盘价长出、均线笔尖跟着推进，再落点位标注、支撑 / 压力线与区间高亮；验收从纵轴刻度反推价格与数据对账 | 「把这段走势画出来」「K 线动画」「标出最高点和最低点」「画条支撑线」 |
 
 ## 安装
 
@@ -36,6 +37,7 @@
 npx skills add Gitruck/gtrk-mg-techniques --skill doc-reveal
 npx skills add Gitruck/gtrk-mg-techniques --skill band-strobe
 npx skills add Gitruck/gtrk-mg-techniques --skill chat-replay
+npx skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 ```
 
 用 gtrk 的宿主（同一条路，顺带登记进栏目配置 `style.skills`，缺省 `routing:none`——技法不是车道生产者，由 agent 按槽位取用）：
@@ -44,10 +46,11 @@ npx skills add Gitruck/gtrk-mg-techniques --skill chat-replay
 gtrk skills add Gitruck/gtrk-mg-techniques --skill doc-reveal
 gtrk skills add Gitruck/gtrk-mg-techniques --skill band-strobe
 gtrk skills add Gitruck/gtrk-mg-techniques --skill chat-replay
+gtrk skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 ```
 
-脚本依赖：Python 3.10+、Pillow；按需 pymupdf（PDF 取页）、playwright（本地 seek 预检）、
-ffmpeg + numpy（视频类技法：`band-strobe`）。
+脚本依赖：Python 3.10+、Pillow；按需 pymupdf（PDF 取页）、playwright（本地 seek 预检与验收读数）、
+ffmpeg + numpy（视频类技法：`band-strobe`；颗粒类验收工具的 `--video` 本地预览也用 ffmpeg）。
 
 ## 每个技法必须满足的门槛
 

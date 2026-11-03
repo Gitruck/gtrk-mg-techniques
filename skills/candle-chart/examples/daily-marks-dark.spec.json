@@ -1,0 +1,23 @@
+{
+  "_": "日线全段：蜡烛 0.6–6.6s 逐根长出、MA5 / MA20 笔尖跟随；随后标出阶段高点与阶段低点、亮起两点之间的回撤区间、在前高画一条压力线。数据是固定种子合成的（synthetic-daily.csv），标题写明「合成数据」。",
+  "id": "example-candle-daily-marks",
+  "width": 1920,
+  "height": 1080,
+  "duration": 14,
+  "bg": "dark",
+  "convention": "cn",
+  "csv": "synthetic-daily.csv",
+  "header": { "title": "示例指数 · 日线", "sub": "合成数据，非真实行情" },
+  "ma": [5, 20],
+  "grow": { "start": 0.6, "end": 6.6 },
+  "marks": [
+    { "t": 7.2, "at": "2025-04-14", "kind": "high", "text": "阶段高点 52.28" },
+    { "t": 8.6, "at": "2025-06-30", "kind": "low", "text": "阶段低点 32.58" }
+  ],
+  "ranges": [
+    { "t": 10.0, "from": "2025-04-14", "to": "2025-06-30", "text": "回撤 −37.7%" }
+  ],
+  "levels": [
+    { "t": 11.4, "price": 52.28, "text": "前高" }
+  ]
+}

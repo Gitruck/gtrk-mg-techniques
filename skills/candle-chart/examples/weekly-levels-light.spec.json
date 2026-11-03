@@ -1,0 +1,22 @@
+{
+  "_": "同一份合成日线按 5 根合并成周线（aggregate），浅色底、美股配色（绿涨红跌）；蜡烛 0.5–3.8s 快速长完，均线在 4.2s 单独描出，再先后画出支撑线与压力线，标出区间内的最低收盘。数据是固定种子合成的，标题写明「合成数据」。",
+  "id": "example-candle-weekly-levels",
+  "width": 1920,
+  "height": 1080,
+  "duration": 10,
+  "bg": "light",
+  "convention": "us",
+  "csv": "synthetic-daily.csv",
+  "aggregate": 5,
+  "volume": false,
+  "header": { "title": "示例指数 · 周线", "sub": "合成数据，非真实行情" },
+  "ma": { "periods": [4], "at": 4.2, "dur": 1.4 },
+  "grow": { "start": 0.5, "end": 3.8 },
+  "levels": [
+    { "t": 6.0, "price": 34.0, "text": "支撑" },
+    { "t": 7.0, "price": 50.0, "text": "压力" }
+  ],
+  "marks": [
+    { "t": 8.0, "at": "2025-06-23", "kind": "close", "side": "below", "text": "最低周收盘 33.01" }
+  ]
+}
