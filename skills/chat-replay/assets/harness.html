@@ -19,7 +19,8 @@
   var qs=new URLSearchParams(location.search);
   if(qs.get('bg')==='0'){stage.style.background='none';document.documentElement.style.background='transparent';document.body.style.background='transparent';document.querySelector('.hud').style.display='none';}
   if(qs.get('hud')==='0'){document.querySelector('.hud').style.display='none';}
-  function fit(){var s=Math.min(innerWidth/1920,(innerHeight-40)/1080);stage.style.transform='translateY(40px) scale('+s+')';}
+  var CW=1920, CH=1080;
+  function fit(){var s=Math.min(innerWidth/CW,(innerHeight-40)/CH);stage.style.transform='translateY(40px) scale('+s+')';}
   fit(); addEventListener('resize',fit);
   var src=qs.get('p')||'particle.html';
   var html=await (await fetch(src)).text();
@@ -28,6 +29,9 @@
   var frag=document.importNode(tpl.content,true);
   var scripts=[].slice.call(frag.querySelectorAll('script')); scripts.forEach(function(s){s.remove();});
   stage.appendChild(frag);
+  var rootEl=stage.querySelector('[data-composition-id]');
+  CW=parseInt(rootEl.getAttribute('data-width'),10)||1920; CH=parseInt(rootEl.getAttribute('data-height'),10)||1080;
+  stage.style.width=CW+'px'; stage.style.height=CH+'px'; fit();
   for(var i=0;i<scripts.length;i++){
     var s=scripts[i], n=document.createElement('script');
     if(s.src){n.src=s.src; await new Promise(function(r,j){n.onload=r;n.onerror=j;document.body.appendChild(n);});}

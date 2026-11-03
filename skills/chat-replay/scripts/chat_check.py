@@ -29,6 +29,7 @@ import http.server
 import io
 import json
 import os
+import re
 import shutil
 import socketserver
 import subprocess
@@ -112,13 +113,17 @@ def main():
     try:
         shutil.copy(HARNESS, os.path.join(tmp, "harness.html"))
         shutil.copy(a.particle, os.path.join(tmp, "particle.html"))
+        with io.open(a.particle, "r", encoding="utf-8") as f:
+            head = f.read(4000)
+        CW = int(re.search(r'data-width="(\d+)"', head).group(1))
+        CH = int(re.search(r'data-height="(\d+)"', head).group(1))
         srv = serve(tmp, a.port)
         from playwright.sync_api import sync_playwright
 
         res = {"ok": True, "fail": []}
         with sync_playwright() as p:
             b = p.chromium.launch()
-            pg = b.new_page(viewport={"width": 1920, "height": 1120})
+            pg = b.new_page(viewport={"width": CW, "height": CH + 40})
             pg.goto("http://127.0.0.1:%d/harness.html?hud=0&p=particle.html&t=0" % a.port)
             pg.wait_for_function("window.__tl && document.fonts.status==='loaded'", timeout=30000)
             pg.evaluate("document.getElementById('stage').style.transform='translateY(40px) scale(1)'")
@@ -172,7 +177,7 @@ def main():
 
             # —— 接触表 ——
             sheet_times = sorted(set([0.05] + [round(x, 2) for x in samples] + [round(dur - 0.06, 2)]))
-            W, Hh = a.tile, int(a.tile * 9 / 16)
+            W, Hh = a.tile, int(a.tile * CH / CW)
             cols = 4
             rows = (len(sheet_times) + cols - 1) // cols
             sheet = Image.new("RGB", (cols * (W + 6) + 6, rows * (Hh + 26) + 6), (30, 30, 30))
@@ -184,7 +189,7 @@ def main():
             frames = []
             for k, t in enumerate(sheet_times):
                 seek(t)
-                png = pg.screenshot(clip={"x": 0, "y": 40, "width": 1920, "height": 1080})
+                png = pg.screenshot(clip={"x": 0, "y": 40, "width": CW, "height": CH})
                 sha = hashlib.sha1(png).hexdigest()[:12]
                 frames.append({"t": t, "sha1": sha})
                 im = Image.open(io.BytesIO(png)).convert("RGB").resize((W, Hh), Image.LANCZOS)
@@ -207,7 +212,7 @@ def main():
                                       stdin=subprocess.PIPE)
                 for k in range(n):
                     seek(k / float(a.fps))
-                    ff.stdin.write(pg.screenshot(type="jpeg", quality=92, clip={"x": 0, "y": 40, "width": 1920, "height": 1080}))
+                    ff.stdin.write(pg.screenshot(type="jpeg", quality=92, clip={"x": 0, "y": 40, "width": CW, "height": CH}))
                 ff.stdin.close()
                 if ff.wait() != 0:
                     res["fail"].append("ffmpeg 编码预览失败")
