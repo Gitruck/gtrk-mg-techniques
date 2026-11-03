@@ -1,0 +1,25 @@
+{
+  "_": "从一个枢纽城市放射出去的几条飞线：先在亚洲视角下飞两条，再把地球转向西、飞向欧洲。线路是示意，不对应任何真实航线；城市坐标是公开的地理数据。",
+  "id": "example-globe-hub-routes",
+  "width": 1920,
+  "height": 1080,
+  "duration": 11,
+  "bg": "dark",
+  "title": { "title": "示例航线网络", "sub": "线路为示意" },
+  "view": { "lon": 105, "lat": 18, "zoom": 1 },
+  "spin": 2.5,
+  "places": [
+    { "id": "sha", "name": "上海", "lat": 31.23, "lon": 121.47 },
+    { "id": "sin", "name": "新加坡", "lat": 1.35, "lon": 103.82, "label": "left" },
+    { "id": "dxb", "name": "迪拜", "lat": 25.2, "lon": 55.27, "label": "left" },
+    { "id": "rtm", "name": "鹿特丹", "lat": 51.92, "lon": 4.48 }
+  ],
+  "arcs": [
+    { "from": "sha", "to": "sin", "t": 1.0, "dur": 1.2 },
+    { "from": "sha", "to": "dxb", "t": 2.6, "dur": 1.6 },
+    { "from": "dxb", "to": "rtm", "t": 6.6, "dur": 1.6 }
+  ],
+  "views": [
+    { "t": 4.6, "dur": 1.8, "at": "dxb", "lat_offset": 8, "zoom": 1.08 }
+  ]
+}

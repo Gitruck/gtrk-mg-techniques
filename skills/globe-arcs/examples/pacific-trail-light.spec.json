@@ -1,0 +1,25 @@
+{
+  "_": "跨太平洋的两条彗尾式飞线（trail：亮头带一段尾巴飞过去，落地后尾巴收进落点），浅色底、不自转；最后把视角推近到北美西海岸，再从洛杉矶飞一条短线到温哥华。线路是示意；城市坐标是公开的地理数据。",
+  "id": "example-globe-pacific-trail",
+  "width": 1920,
+  "height": 1080,
+  "duration": 11,
+  "bg": "light",
+  "spin": 0,
+  "title": { "title": "跨太平洋示意", "sub": "线路为示意" },
+  "view": { "lon": -175, "lat": 18, "zoom": 0.95 },
+  "places": [
+    { "id": "tyo", "name": "东京", "lat": 35.68, "lon": 139.69, "label": "left" },
+    { "id": "syd", "name": "悉尼", "lat": -33.87, "lon": 151.21, "label": "left" },
+    { "id": "lax", "name": "洛杉矶", "lat": 34.05, "lon": -118.24, "label": "below" },
+    { "id": "yvr", "name": "温哥华", "lat": 49.28, "lon": -123.12 }
+  ],
+  "arcs": [
+    { "from": "tyo", "to": "lax", "t": 0.9, "dur": 2.2, "style": "trail" },
+    { "from": "syd", "to": "yvr", "t": 2.6, "dur": 2.6, "style": "trail" },
+    { "from": "lax", "to": "yvr", "t": 7.6, "dur": 1.0 }
+  ],
+  "views": [
+    { "t": 5.6, "dur": 1.8, "at": "lax", "lat_offset": 6, "zoom": 1.5 }
+  ]
+}
