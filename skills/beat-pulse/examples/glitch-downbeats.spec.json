@@ -1,0 +1,22 @@
+{
+  "_": "拍点从文件读（gtrk 音乐分析回执同格式）；只在 downbeat 上切片段，其余拍原地打 glitch：普通拍色散 + 条带错位，重拍再叠负片闪与震。30fps。",
+  "id": "example-beat-pulse-glitch",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration": 5.5,
+  "clips": [
+    "clips/c02.mp4",
+    "clips/c04.mp4",
+    "clips/c05.mp4",
+    "clips/c06.mp4"
+  ],
+  "beats": {
+    "file": "beats-128.json",
+    "every": 1
+  },
+  "accent": "downbeats",
+  "cut": "accent",
+  "fx": "glitch",
+  "seed": 7
+}

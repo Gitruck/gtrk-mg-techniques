@@ -1,0 +1,14 @@
+{
+  "_": "120 BPM 网格、每拍一切、每 4 拍一个重拍：普通拍「推一下 + 震」，重拍再叠闪白与色散（punch 预设）。素材先跑 make_clips.py 生成（程序化合成画面）。",
+  "id": "example-beat-pulse-punch",
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "duration": 6,
+  "clips": ["clips/c01.mp4", "clips/c02.mp4", "clips/c03.mp4", "clips/c04.mp4", "clips/c05.mp4", "clips/c06.mp4"],
+  "bpm": { "bpm": 120, "offset": 0.5, "every": 1 },
+  "accent": { "every": 4, "phase": 3 },
+  "cut": "every",
+  "fx": "punch",
+  "seed": 20261103
+}

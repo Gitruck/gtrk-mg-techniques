@@ -29,6 +29,7 @@
 | [`chat-replay`](skills/chat-replay/SKILL.md) | 颗粒 | 聊天记录回放：对话气泡逐条弹出，对方「正在输入」、我方在输入框里逐字打出，排满上推，说到哪句就描边 + 荧光笔（可推近） | 「把这段聊天记录做成动画」「群聊对话逐条弹出」「情景还原一段对话」 |
 | [`candle-chart`](skills/candle-chart/SKILL.md) | 颗粒 | K 线图动画：蜡烛逐根从开盘价长出、均线笔尖跟着推进，再落点位标注、支撑 / 压力线与区间高亮；验收从纵轴刻度反推价格与数据对账 | 「把这段走势画出来」「K 线动画」「标出最高点和最低点」「画条支撑线」 |
 | [`globe-arcs`](skills/globe-arcs/SKILL.md) | 颗粒 | 点阵地球飞线：陆地点阵地球自转，按口播把城市转到正面 / 推近，城市间飞出大圆弧（常亮线或彗尾），落地泛起透视光圈 | 「地球飞线」「全球航线示意」「从 A 飞到 B」「业务覆盖全球」 |
+| [`beat-pulse`](skills/beat-pulse/SKILL.md) | 视频 | 卡点冲击链：拍点上震屏、推一下 / 呼吸胀缩、闪白、RGB 色散、负片闪、放射模糊、条带错位按配方叠加衰减，可每拍或重拍切片段 | 「做卡点」「踩点视频」「卡点震屏闪白」「MAD 冲击感」 |
 
 ## 安装
 
@@ -40,6 +41,7 @@ npx skills add Gitruck/gtrk-mg-techniques --skill band-strobe
 npx skills add Gitruck/gtrk-mg-techniques --skill chat-replay
 npx skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 npx skills add Gitruck/gtrk-mg-techniques --skill globe-arcs
+npx skills add Gitruck/gtrk-mg-techniques --skill beat-pulse
 ```
 
 用 gtrk 的宿主（同一条路，顺带登记进栏目配置 `style.skills`，缺省 `routing:none`——技法不是车道生产者，由 agent 按槽位取用）：
@@ -50,10 +52,11 @@ gtrk skills add Gitruck/gtrk-mg-techniques --skill band-strobe
 gtrk skills add Gitruck/gtrk-mg-techniques --skill chat-replay
 gtrk skills add Gitruck/gtrk-mg-techniques --skill candle-chart
 gtrk skills add Gitruck/gtrk-mg-techniques --skill globe-arcs
+gtrk skills add Gitruck/gtrk-mg-techniques --skill beat-pulse
 ```
 
 脚本依赖：Python 3.10+、Pillow；按需 pymupdf（PDF 取页）、playwright（本地 seek 预检与验收读数）、
-ffmpeg + numpy（视频类技法：`band-strobe`；颗粒类验收工具的 `--video` 本地预览也用 ffmpeg）。
+ffmpeg + numpy（视频类技法：`band-strobe`、`beat-pulse`；颗粒类验收工具的 `--video` 本地预览也用 ffmpeg）。
 
 ## 每个技法必须满足的门槛
 
