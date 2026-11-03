@@ -1,0 +1,28 @@
+{
+  "_": "两人私聊回放：深色桌面窗口、我方在输入框里逐字打字后发出（compose）、对方打字中（typing）、最后推近强调一句。人物与对话均为虚构示例；文案按你的口播重写。",
+  "id": "example-panel-dark-compose-zoom",
+  "width": 1920,
+  "height": 1080,
+  "duration": 13,
+  "bg": "dark",
+  "frame": { "kind": "panel", "title": "设计组 · 小林", "subtitle": "在线", "stamp": "情景还原" },
+  "participants": {
+    "lin": { "name": "小林", "side": "left" },
+    "me": { "name": "我", "side": "right" }
+  },
+  "stack": "bottom",
+  "messages": [
+    { "kind": "system", "text": "昨天 23:47" },
+    { "from": "lin", "text": "方案改好了吗？明早九点要给客户过一遍" },
+    { "t": 2.4, "from": "me", "text": "还差最后一页，数据图在重画", "compose": 1.3 },
+    { "t": 4.6, "from": "lin", "text": "数据图用上周那版就行，别熬了", "typing": 1.4 },
+    { "t": 6.9, "from": "me", "text": "上周那版的统计口径是错的，必须重画", "compose": 1.6 },
+    { "t": 8.6, "from": "lin", "text": "好，那我早上先帮你把前面几页过一遍", "typing": 1.1 }
+  ],
+  "focus": [
+    { "t": 9.8, "msg": 4, "mark": "统计口径是错的", "zoom": 1.32, "anchor": [0.72, 0.5] }
+  ],
+  "captions": [
+    { "t": 0.8, "variant": "card", "pos": "left", "y": 320, "w": 620, "kicker": "情景还原", "title": "深夜改稿", "meta": "对话为示意，人物均为虚构" }
+  ]
+}

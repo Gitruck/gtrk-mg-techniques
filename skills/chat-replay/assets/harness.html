@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>chat-replay seek harness</title>
+<style>
+  html,body{margin:0;height:100%;background:#202020;font-family:system-ui,sans-serif;color:#ddd}
+  /* 棋盘格：颗粒根若真透明，格子会从缝里露出来 */
+  .stage{position:relative;width:1920px;height:1080px;transform-origin:0 0;
+    background-color:#3a3a3a;
+    background-image:linear-gradient(45deg,#555 25%,transparent 25%),linear-gradient(-45deg,#555 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#555 75%),linear-gradient(-45deg,transparent 75%,#555 75%);
+    background-size:80px 80px;background-position:0 0,0 40px,40px -40px,-40px 0;}
+  .hud{position:fixed;left:8px;top:8px;z-index:9;background:rgba(0,0,0,.6);padding:6px 10px;font-size:14px}
+  .hud input{width:420px;vertical-align:middle}
+</style>
+<div class="hud">t=<b id="tv">0</b>s <input id="sl" type="range" min="0" max="20" step="0.02" value="0"> <span id="st">loading…</span></div>
+<div class="stage" id="stage"></div>
+<script>
+(async function(){
+  var stage=document.getElementById('stage');
+  var qs=new URLSearchParams(location.search);
+  if(qs.get('bg')==='0'){stage.style.background='none';document.documentElement.style.background='transparent';document.body.style.background='transparent';document.querySelector('.hud').style.display='none';}
+  if(qs.get('hud')==='0'){document.querySelector('.hud').style.display='none';}
+  function fit(){var s=Math.min(innerWidth/1920,(innerHeight-40)/1080);stage.style.transform='translateY(40px) scale('+s+')';}
+  fit(); addEventListener('resize',fit);
+  var src=qs.get('p')||'particle.html';
+  var html=await (await fetch(src)).text();
+  var doc=new DOMParser().parseFromString(html,'text/html');
+  var tpl=doc.querySelector('template'); if(!tpl){document.getElementById('st').textContent='no <template>';return;}
+  var frag=document.importNode(tpl.content,true);
+  var scripts=[].slice.call(frag.querySelectorAll('script')); scripts.forEach(function(s){s.remove();});
+  stage.appendChild(frag);
+  for(var i=0;i<scripts.length;i++){
+    var s=scripts[i], n=document.createElement('script');
+    if(s.src){n.src=s.src; await new Promise(function(r,j){n.onload=r;n.onerror=j;document.body.appendChild(n);});}
+    else{n.textContent=s.textContent; document.body.appendChild(n);}
+  }
+  var id=stage.querySelector('[data-composition-id]').getAttribute('data-composition-id');
+  var tl=(window.__timelines||{})[id];
+  if(!tl){document.getElementById('st').textContent='timeline not registered: '+id;return;}
+  document.getElementById('st').textContent='id='+id+' dur='+tl.duration().toFixed(3)+'s';
+  var sl=document.getElementById('sl'), tv=document.getElementById('tv'); sl.max=tl.duration().toFixed(2);
+  function seek(t){tl.seek(t,false); tv.textContent=Number(t).toFixed(2); sl.value=t;}
+  sl.oninput=function(){seek(parseFloat(sl.value));};
+  var t0=parseFloat(qs.get('t')||'0'); seek(t0);
+  window.__seek=seek; window.__tl=tl;
+})();
+</script>

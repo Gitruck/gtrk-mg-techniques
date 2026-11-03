@@ -1,0 +1,29 @@
+{
+  "_": "三人群聊回放：手机画框、对方打字中提示、最后强调一句话（荧光笔 + 描边，不推近）。人物与对话均为虚构示例；文案按你的口播重写。",
+  "id": "example-phone-group-focus",
+  "width": 1920,
+  "height": 1080,
+  "duration": 12.5,
+  "bg": "light",
+  "frame": { "kind": "phone", "title": "周末徒步小队", "subtitle": "3 人", "stamp": "示意" },
+  "participants": {
+    "lan": { "name": "阿岚", "side": "left" },
+    "tang": { "name": "老唐", "side": "left" },
+    "me": { "name": "我", "side": "right" }
+  },
+  "messages": [
+    { "kind": "system", "text": "周四 21:08" },
+    { "from": "lan", "text": "周六去不去爬山？预报说是晴天" },
+    { "t": 1.2, "from": "me", "text": "去！几点集合？" },
+    { "t": 2.9, "from": "lan", "text": "七点半，地铁站 B 口见", "typing": 1.0 },
+    { "t": 4.8, "from": "tang", "text": "七点半我真的起不来……八点行不行", "typing": 1.3 },
+    { "t": 6.6, "from": "me", "text": "那就八点，谁迟到谁请奶茶" },
+    { "t": 8.3, "from": "tang", "text": "成交", "typing": 0.9 }
+  ],
+  "focus": [
+    { "t": 9.4, "msg": 4, "mark": "我真的起不来" }
+  ],
+  "captions": [
+    { "t": 0.6, "variant": "card", "pos": "left", "y": 330, "w": 560, "kicker": "情景示例", "title": "集合时间之争", "meta": "人物与对话均为虚构" }
+  ]
+}
