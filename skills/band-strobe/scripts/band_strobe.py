@@ -172,6 +172,9 @@ def main():
     ap.add_argument("--out", required=True, help="产物 mp4 路径（直接写最终落点）")
     ap.add_argument("--keep-tmp", action="store_true", help="保留中间带文件，便于排查")
     args = ap.parse_args()
+    for st in (sys.stdout, sys.stderr):  # Windows 控制台缺省 GBK，打印 ✅ 等字符会崩
+        if hasattr(st, "reconfigure"):
+            st.reconfigure(encoding="utf-8")
 
     for exe in ("ffmpeg", "ffprobe"):
         if shutil.which(exe) is None:

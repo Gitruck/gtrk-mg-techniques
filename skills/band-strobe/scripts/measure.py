@@ -133,6 +133,9 @@ def main():
     ap.add_argument("--k", type=float, default=1.0, help="切点检测阈值 μ+kσ；漏切就调小到 0.5")
     ap.add_argument("--emit-spec", action="store_true", help="吐出可直接用的 rhythm 段")
     args = ap.parse_args()
+    for st in (sys.stdout, sys.stderr):  # Windows 控制台缺省 GBK，打印 ✅ 等字符会崩
+        if hasattr(st, "reconfigure"):
+            st.reconfigure(encoding="utf-8")
 
     for exe in ("ffmpeg", "ffprobe"):
         if shutil.which(exe) is None:
