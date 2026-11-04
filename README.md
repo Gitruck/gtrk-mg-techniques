@@ -22,16 +22,18 @@
 
 ## 技法目录
 
-| skill | 产物 | 一句话 | 典型触发 |
-|---|---|---|---|
-| [`doc-reveal`](skills/doc-reveal/SKILL.md) | 颗粒 | 文献 / 文档页「叠放 · 发牌 · 局部强调」：多页纸落成一叠，镜头推近某一行，荧光笔划过，旁边落文案卡 | 「引用这篇论文」「新闻截图叠放展示」「把这段文字圈出来放大」 |
-| [`band-strobe`](skills/band-strobe/SKILL.md) | 视频 | 横带频闪蒙太奇：画幅横切成几条带，每条带各自快切不同画面、切点相位错开，叠 RGB 错位与洗白调色 | 「做个片头 / OP」「开场频闪」「闪回蒙太奇」「glitch 快切」 |
-| [`chat-replay`](skills/chat-replay/SKILL.md) | 颗粒 | 聊天记录回放：对话气泡逐条弹出，对方「正在输入」、我方在输入框里逐字打出，排满上推，说到哪句就描边 + 荧光笔（可推近） | 「把这段聊天记录做成动画」「群聊对话逐条弹出」「情景还原一段对话」 |
-| [`candle-chart`](skills/candle-chart/SKILL.md) | 颗粒 | K 线图动画：蜡烛逐根从开盘价长出、均线笔尖跟着推进，再落点位标注、支撑 / 压力线与区间高亮；验收从纵轴刻度反推价格与数据对账 | 「把这段走势画出来」「K 线动画」「标出最高点和最低点」「画条支撑线」 |
-| [`globe-arcs`](skills/globe-arcs/SKILL.md) | 颗粒 | 点阵地球飞线：陆地点阵地球自转，按口播把城市转到正面 / 推近，城市间飞出大圆弧（常亮线或彗尾），落地泛起透视光圈 | 「地球飞线」「全球航线示意」「从 A 飞到 B」「业务覆盖全球」 |
-| [`beat-pulse`](skills/beat-pulse/SKILL.md) | 视频 | 卡点冲击链：拍点上震屏、推一下 / 呼吸胀缩、闪白、RGB 色散、负片闪、放射模糊、条带错位按配方叠加衰减，可每拍或重拍切片段 | 「做卡点」「踩点视频」「卡点震屏闪白」「MAD 冲击感」 |
-| [`cam-whip`](skills/cam-whip/SKILL.md) | 视频 | 拉镜 / 甩镜卡点：切点两侧做甩镜、急推急拉（可偏锚点）、平铺推拉，镜像补边、真运动模糊，段内可加缓推与手持微震 | 「甩镜转场」「拉镜卡点」「锚点拉镜连招」「whip pan」 |
-| [`lyric-pv`](skills/lyric-pv/SKILL.md) | 颗粒 | 文字 PV（歌词排版）：一句一个镜头，布局 × 登场 × 停留 × 退场 × 装饰 × 转场按 seed 确定性组合，副歌回到原样、强调词放大、一拍二作画节奏 | 「做歌词 MV」「文字 PV」「歌词动画」「竖排歌词」 |
+| skill | 示意 | 产物 | 一句话 | 典型触发 |
+|---|---|---|---|---|
+| [`doc-reveal`](skills/doc-reveal/SKILL.md) | <img src="docs/media/doc-reveal.gif" width="240" alt="doc-reveal 示意"> | 颗粒 | 文献 / 文档页「叠放 · 发牌 · 局部强调」：多页纸落成一叠，镜头推近某一行，荧光笔划过，旁边落文案卡 | 「引用这篇论文」「新闻截图叠放展示」「把这段文字圈出来放大」 |
+| [`band-strobe`](skills/band-strobe/SKILL.md) | <img src="docs/media/band-strobe.gif" width="240" alt="band-strobe 示意"> | 视频 | 横带频闪蒙太奇：画幅横切成几条带，每条带各自快切不同画面、切点相位错开，叠 RGB 错位与洗白调色 | 「做个片头 / OP」「开场频闪」「闪回蒙太奇」「glitch 快切」 |
+| [`chat-replay`](skills/chat-replay/SKILL.md) | <img src="docs/media/chat-replay.gif" width="240" alt="chat-replay 示意"> | 颗粒 | 聊天记录回放：对话气泡逐条弹出，对方「正在输入」、我方在输入框里逐字打出，排满上推，说到哪句就描边 + 荧光笔（可推近） | 「把这段聊天记录做成动画」「群聊对话逐条弹出」「情景还原一段对话」 |
+| [`candle-chart`](skills/candle-chart/SKILL.md) | <img src="docs/media/candle-chart.gif" width="240" alt="candle-chart 示意"> | 颗粒 | K 线图动画：蜡烛逐根从开盘价长出、均线笔尖跟着推进，再落点位标注、支撑 / 压力线与区间高亮；验收从纵轴刻度反推价格与数据对账 | 「把这段走势画出来」「K 线动画」「标出最高点和最低点」「画条支撑线」 |
+| [`globe-arcs`](skills/globe-arcs/SKILL.md) | <img src="docs/media/globe-arcs.gif" width="240" alt="globe-arcs 示意"> | 颗粒 | 点阵地球飞线：陆地点阵地球自转，按口播把城市转到正面 / 推近，城市间飞出大圆弧（常亮线或彗尾），落地泛起透视光圈 | 「地球飞线」「全球航线示意」「从 A 飞到 B」「业务覆盖全球」 |
+| [`beat-pulse`](skills/beat-pulse/SKILL.md) | <img src="docs/media/beat-pulse.gif" width="240" alt="beat-pulse 示意"> | 视频 | 卡点冲击链：拍点上震屏、推一下 / 呼吸胀缩、闪白、RGB 色散、负片闪、放射模糊、条带错位按配方叠加衰减，可每拍或重拍切片段 | 「做卡点」「踩点视频」「卡点震屏闪白」「MAD 冲击感」 |
+| [`cam-whip`](skills/cam-whip/SKILL.md) | <img src="docs/media/cam-whip.gif" width="240" alt="cam-whip 示意"> | 视频 | 拉镜 / 甩镜卡点：切点两侧做甩镜、急推急拉（可偏锚点）、平铺推拉，镜像补边、真运动模糊，段内可加缓推与手持微震 | 「甩镜转场」「拉镜卡点」「锚点拉镜连招」「whip pan」 |
+| [`lyric-pv`](skills/lyric-pv/SKILL.md) | <img src="docs/media/lyric-pv.gif" width="240" alt="lyric-pv 示意"> | 颗粒 | 文字 PV（歌词排版）：一句一个镜头，布局 × 登场 × 停留 × 退场 × 装饰 × 转场按 seed 确定性组合，副歌回到原样、强调词放大、一拍二作画节奏 | 「做歌词 MV」「文字 PV」「歌词动画」「竖排歌词」 |
+
+示意动图全部用合成素材做：程序化画面（ffmpeg 信号源）、虚构的论文页与对话、合成行情、原创示意歌词；`globe-arcs` 与 `lyric-pv` 两张取自 HyperFrames 渲染引擎（同合云云端渲染所用引擎）的实际输出。动图放在 `docs/media/`，不随单个技法安装。
 
 ## 安装
 
