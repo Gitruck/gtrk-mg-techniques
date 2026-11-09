@@ -24,7 +24,7 @@
 
 | skill | 示意 | 产物 | 一句话 | 典型触发 |
 |---|---|---|---|---|
-| [`doc-reveal`](skills/doc-reveal/SKILL.md) | <img src="docs/media/doc-reveal.gif" width="240" alt="doc-reveal 示意"> | 颗粒 | 文献 / 文档页「叠放 · 发牌 · 局部强调」：多页纸落成一叠，镜头推近某一行，荧光笔划过，旁边落文案卡 | 「引用这篇论文」「新闻截图叠放展示」「把这段文字圈出来放大」 |
+| [`doc-reveal`](skills/doc-reveal/SKILL.md) | <img src="docs/media/doc-reveal.gif" width="240" alt="doc-reveal 示意"> | 颗粒；合成里用时页面作素材槽位（内置 AI、新工程推荐） | 文献 / 文档页「叠放 · 发牌 · 局部强调」：多页纸落成一叠，镜头推近某一行，荧光笔划过，旁边落文案卡 | 「引用这篇论文」「新闻截图叠放展示」「把这段文字圈出来放大」 |
 | [`band-strobe`](skills/band-strobe/SKILL.md) | <img src="docs/media/band-strobe.gif" width="240" alt="band-strobe 示意"> | 视频 | 横带频闪蒙太奇：画幅横切成几条带，每条带各自快切不同画面、切点相位错开，叠 RGB 错位与洗白调色 | 「做个片头 / OP」「开场频闪」「闪回蒙太奇」「glitch 快切」 |
 | [`chat-replay`](skills/chat-replay/SKILL.md) | <img src="docs/media/chat-replay.gif" width="240" alt="chat-replay 示意"> | 颗粒 | 聊天记录回放：对话气泡逐条弹出，对方「正在输入」、我方在输入框里逐字打出，排满上推，说到哪句就描边 + 荧光笔（可推近） | 「把这段聊天记录做成动画」「群聊对话逐条弹出」「情景还原一段对话」 |
 | [`candle-chart`](skills/candle-chart/SKILL.md) | <img src="docs/media/candle-chart.gif" width="240" alt="candle-chart 示意"> | 颗粒 | K 线图动画：蜡烛逐根从开盘价长出、均线笔尖跟着推进，再落点位标注、支撑 / 压力线与区间高亮；验收从纵轴刻度反推价格与数据对账 | 「把这段走势画出来」「K 线动画」「标出最高点和最低点」「画条支撑线」 |
